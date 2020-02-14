@@ -1,8 +1,10 @@
 {
   "env": { "node": true, "browser": true, "es6": true },
   "parser": "babel-eslint",
-  "extends": "airbnb",
+  "extends": ["airbnb", "prettier"],
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "arrow-parens": [2, "as-needed"],
+    "prettier/prettier": "error"
   }
 }
