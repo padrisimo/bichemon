@@ -13,7 +13,20 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Search" component={SearchScreen} />
-        <Stack.Screen name="BichoShow" component={BichoScreen} />
+        <Stack.Screen
+          options={({ route }) => ({
+            title: route.params.name,
+            headerStyle: {
+              backgroundColor: '#f4511e'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold'
+            }
+          })}
+          name="Bicho"
+          component={BichoScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

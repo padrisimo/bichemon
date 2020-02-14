@@ -1,10 +1,9 @@
 import React, { useContext, useEffect } from 'react';
-import { View, Text, Button } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { View, Text } from 'react-native';
 import { Context } from '../context/BichosContext';
+import BichosList from '../components/BichosList';
 
 const SearchScreen = () => {
-  const { navigate } = useNavigation();
   const { state, getBichemonList } = useContext(Context);
 
   useEffect(() => {
@@ -12,10 +11,9 @@ const SearchScreen = () => {
   }, []);
   console.log(state);
   return (
-    <View>
-      <Text>search bichos</Text>
-      <Button onPress={() => navigate('BichoShow')} title="ou yea!" />
-    </View>
+    <>
+      {state && state.results ? <BichosList results={state.results} /> : null}
+    </>
   );
 };
 
