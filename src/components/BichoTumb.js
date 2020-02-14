@@ -7,7 +7,7 @@ const BichoTumb = ({ result, id }) => {
   const { navigate } = useNavigation();
 
   return (
-    <TouchableOpacity onPress={() => navigate('Bicho', { name: result.name })}>
+    <TouchableOpacity onPress={() => navigate('Bicho', { name: result.name, id })}>
       <View style={styles.container}>
         <Text style={styles.name}>{result.name}</Text>
         <Image

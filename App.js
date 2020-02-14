@@ -12,7 +12,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen options={{ title: 'Bichemon' }} name="Search" component={SearchScreen} />
         <Stack.Screen
           options={({ route }) => ({
             title: route.params.name,

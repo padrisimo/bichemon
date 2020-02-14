@@ -1,10 +1,31 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Image } from 'react-native';
+import pokeapi from '../api/pokeapi';
+import { SHINI_URI } from '../constants';
 
-const BichoScreen = () => {
+const BichoScreen = ({ route }) => {
+  const [result, setResult] = useState(null);
+  const { id } = route.params;
+
+  console.log(result);
+
+  const getResult = async query => {
+    const response = await pokeapi.get(`/pokemon/${query}`);
+    setResult(response.data);
+  };
+
+  useEffect(() => {
+    getResult(id);
+  }, []);
+
+  if (!result) {
+    return null;
+  }
+
   return (
     <View>
-      <Text>Bicho deatil here</Text>
+      <Text>{result.weight}</Text>
+      <Image style={{ width: 300, height: 200 }} source={{ uri: `${SHINI_URI + id}.png` }} />
     </View>
   );
 };
