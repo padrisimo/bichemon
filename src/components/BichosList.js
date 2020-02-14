@@ -14,13 +14,7 @@ const BichosList = ({ results }) => {
       numColumns={2}
       showsHorizontalScrollIndicator={false}
       keyExtractor={result => result.name}
-      renderItem={({ item, index }) => (
-        <BichoTumb
-          result={item}
-          id={index + 1}
-          lastOfUs={index === results.length - 1 ? true : false}
-        />
-      )}
+      renderItem={({ item, index }) => <BichoTumb result={item} id={index + 1} />}
     />
   );
 };

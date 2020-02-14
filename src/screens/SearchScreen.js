@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Modal } from 'react-native';
 import useResults from '../hooks/useResults';
 import SearchBar from '../components/SearchBar';
 import { Context } from '../context/BichosContext';
@@ -16,11 +16,7 @@ const SearchScreen = () => {
 
   return (
     <>
-      <SearchBar
-        term={term}
-        onTermChange={setTerm}
-        onTermSubmit={() => searchApi(term)}
-      />
+      <SearchBar term={term} onTermChange={setTerm} onTermSubmit={() => searchApi(term)} />
       {state && state.results ? <BichosList results={state.results} /> : null}
     </>
   );

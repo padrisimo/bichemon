@@ -19,8 +19,4 @@ const getBichemonList = dispatch => {
   };
 };
 
-export const { Context, Provider } = createDataContext(
-  bichosReducer,
-  { getBichemonList },
-  []
-);
+export const { Context, Provider } = createDataContext(bichosReducer, { getBichemonList }, []);
