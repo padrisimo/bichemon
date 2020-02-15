@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image } from 'react-native';
 import pokeapi from '../api/pokeapi';
-import { SHINI_URI } from '../constants';
+import { PICS_URI } from '../constants';
 
 const BichoScreen = ({ route }) => {
   const [result, setResult] = useState(null);
   const { id } = route.params;
-
-  console.log(result);
 
   const getResult = async query => {
     const response = await pokeapi.get(`/pokemon/${query}`);
@@ -25,7 +23,7 @@ const BichoScreen = ({ route }) => {
   return (
     <View>
       <Text>{result.weight}</Text>
-      <Image style={{ width: 300, height: 200 }} source={{ uri: `${SHINI_URI + id}.png` }} />
+      <Image style={{ width: 200, height: 200 }} source={{ uri: `${PICS_URI + id}.png` }} />
     </View>
   );
 };

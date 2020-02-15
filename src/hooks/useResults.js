@@ -2,7 +2,7 @@ import { useState } from 'react';
 import pokeapi from '../api/pokeapi';
 
 export default () => {
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
 
   const searchApi = async searchTerm => {
