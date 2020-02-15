@@ -15,5 +15,9 @@ export default () => {
     }
   };
 
-  return [searchApi, result, errorMessage];
+  const clearErrorMessage = () => {
+    setErrorMessage('');
+  };
+
+  return [searchApi, result, errorMessage, clearErrorMessage];
 };

@@ -1,15 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Text, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import useResults from '../hooks/useResults';
 import SearchBar from '../components/SearchBar';
 import { Context } from '../context/BichosContext';
 import BichosList from '../components/BichosList';
+import ErrorModal from '../components/ErrorModal';
 
-// todo modal errorMessage
 const SearchScreen = () => {
   const [term, setTerm] = useState('');
-  const [searchApi, result, errorMessage] = useResults();
+  const [searchApi, result, errorMessage, clearErrorMessage] = useResults();
   const { state, getBichemonList } = useContext(Context);
   const { navigate } = useNavigation();
 
@@ -22,9 +21,16 @@ const SearchScreen = () => {
     navigate('Bicho', { name: result.name, id: result.id });
   }, [result]);
 
+  const handleSubmit = () => {
+    if (!term) return;
+    searchApi(term);
+    setTerm('');
+  };
+
   return (
     <>
-      <SearchBar term={term} onTermChange={setTerm} onTermSubmit={() => searchApi(term)} />
+      <ErrorModal errorMessage={errorMessage} clearErrorMessage={clearErrorMessage} />
+      <SearchBar term={term} onTermChange={setTerm} onTermSubmit={handleSubmit} />
       {state && state.results ? <BichosList results={state.results} /> : null}
     </>
   );
