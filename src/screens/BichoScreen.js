@@ -17,18 +17,26 @@ const BichoScreen = ({ route }) => {
   const playbackObject = async () => {
     const soundObject = new Audio.Sound();
     try {
-      await soundObject.loadAsync(
-        {
-          uri: `${CRY_URL + id}.mp3`
-        },
-        { shouldPlay: true, androidImplementation: 'MediaPlayer' }
-      );
+      await soundObject
+        .loadAsync(
+          {
+            uri: `${CRY_URL + id}.mp3`
+          },
+          { shouldPlay: true, androidImplementation: 'MediaPlayer' }
+        )
+        .catch(error => {
+          console.log(error);
+        });
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
+    Audio.setAudioModeAsync({
+      interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+      shouldDuckAndroid: true
+    });
     getResult(id);
   }, []);
 
