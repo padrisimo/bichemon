@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, Modal, StyleSheet } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, Text, Modal, StyleSheet, TouchableOpacity } from 'react-native';
 
 const ErrorModal = ({ errorMessage, clearErrorMessage }) => {
   return (

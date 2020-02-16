@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { StatusBar } from 'react-native';
+
 import useResults from '../hooks/useResults';
 import SearchBar from '../components/SearchBar';
 import { Context } from '../context/BichosContext';
@@ -29,6 +31,7 @@ const SearchScreen = () => {
 
   return (
     <>
+      <StatusBar hidden />
       <ErrorModal errorMessage={errorMessage} clearErrorMessage={clearErrorMessage} />
       <SearchBar term={term} onTermChange={setTerm} onTermSubmit={handleSubmit} />
       {state && state.results ? <BichosList results={state.results} /> : null}
