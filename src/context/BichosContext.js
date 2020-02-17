@@ -1,3 +1,4 @@
+import axios from 'axios';
 import createDataContext from './createDataContext';
 import pokeapi from '../api/pokeapi';
 
@@ -6,6 +7,12 @@ const bichosReducer = (state, action) => {
   switch (action.type) {
     case 'get_bichemon':
       return action.payload;
+    case 'get_more_bichemon':
+      return {
+        ...state,
+        results: [...state.results, action.payload.results],
+        next: action.payload.next
+      };
     default:
       return state;
   }
@@ -19,4 +26,16 @@ const getBichemonList = dispatch => {
   };
 };
 
-export const { Context, Provider } = createDataContext(bichosReducer, { getBichemonList }, []);
+// todo extract this logic to api service
+const loadMoreBichos = dispatch => {
+  return async url => {
+    const response = await axios.get(url);
+    dispatch({ type: 'get_more_bichemon', payload: response.data });
+  };
+};
+
+export const { Context, Provider } = createDataContext(
+  bichosReducer,
+  { getBichemonList, loadMoreBichos },
+  []
+);

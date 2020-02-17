@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import BichoTumb from './BichoTumb';
 
-const BichosList = ({ results }) => {
+const BichosList = ({ results, loadMoreBichos }) => {
   if (!results.length) {
     return null;
   }
@@ -13,8 +13,10 @@ const BichosList = ({ results }) => {
       columnWrapperStyle={{ justifyContent: 'space-around' }}
       numColumns={2}
       showsHorizontalScrollIndicator={false}
-      keyExtractor={result => result.name}
+      keyExtractor={(item, index) => index.toString()}
       renderItem={({ item, index }) => <BichoTumb result={item} id={index + 1} />}
+      onEndReachedThreshold={0.5}
+      onEndReached={loadMoreBichos}
     />
   );
 };

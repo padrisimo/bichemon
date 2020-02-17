@@ -11,7 +11,7 @@ import ErrorModal from '../components/ErrorModal';
 const SearchScreen = () => {
   const [term, setTerm] = useState('');
   const [searchApi, result, errorMessage, clearErrorMessage] = useResults();
-  const { state, getBichemonList } = useContext(Context);
+  const { state, getBichemonList, loadMoreBichos } = useContext(Context);
   const { navigate } = useNavigation();
 
   useEffect(() => {
@@ -34,7 +34,9 @@ const SearchScreen = () => {
       <StatusBar hidden />
       <ErrorModal errorMessage={errorMessage} clearErrorMessage={clearErrorMessage} />
       <SearchBar term={term} onTermChange={setTerm} onTermSubmit={handleSubmit} />
-      {state && state.results ? <BichosList results={state.results} /> : null}
+      {state && state.results ? (
+        <BichosList results={state.results} loadMoreBichos={() => loadMoreBichos(state.next)} />
+      ) : null}
     </>
   );
 };
