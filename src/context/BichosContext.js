@@ -10,7 +10,7 @@ const bichosReducer = (state, action) => {
     case 'get_more_bichemon':
       return {
         ...state,
-        results: [...state.results, action.payload.results],
+        results: [...state.results, ...action.payload.results],
         next: action.payload.next
       };
     default:
