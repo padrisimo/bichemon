@@ -7,6 +7,7 @@ import SearchBar from '../components/SearchBar';
 import { Context } from '../context/BichosContext';
 import BichosList from '../components/BichosList';
 import ErrorModal from '../components/ErrorModal';
+import ApiFallMsg from '../components/ApiFallMsg';
 
 const SearchScreen = () => {
   const [term, setTerm] = useState('');
@@ -34,6 +35,7 @@ const SearchScreen = () => {
       <StatusBar hidden />
       <ErrorModal errorMessage={errorMessage} clearErrorMessage={clearErrorMessage} />
       <SearchBar term={term} onTermChange={setTerm} onTermSubmit={handleSubmit} />
+      {state && state.error ? <ApiFallMsg error={state.error} /> : null}
       {state && state.results ? (
         <BichosList results={state.results} loadMoreBichos={() => loadMoreBichos(state.next)} />
       ) : null}
