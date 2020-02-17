@@ -8,6 +8,7 @@ import { Context } from '../context/BichosContext';
 import BichosList from '../components/BichosList';
 import ErrorModal from '../components/ErrorModal';
 import ApiFallMsg from '../components/ApiFallMsg';
+import Spinner from '../components/Spinner';
 
 const SearchScreen = () => {
   const [term, setTerm] = useState('');
@@ -29,7 +30,9 @@ const SearchScreen = () => {
     searchApi(term);
     setTerm('');
   };
-
+  if (!state || state.loading) {
+    return <Spinner />;
+  }
   return (
     <>
       <StatusBar hidden />

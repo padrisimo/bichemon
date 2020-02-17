@@ -30,7 +30,6 @@ const bichosReducer = (
   }
 };
 
-// todo try catch and handle api error
 const getBichemonList = dispatch => {
   return async () => {
     try {
