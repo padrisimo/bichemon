@@ -29,6 +29,7 @@ const getBichemonList = dispatch => {
 // todo extract this logic to api service
 const loadMoreBichos = dispatch => {
   return async url => {
+    if (!url) return;
     const response = await axios.get(url);
     dispatch({ type: 'get_more_bichemon', payload: response.data });
   };
